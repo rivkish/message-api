@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font-awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Open+Sans:wght@300&family=Oswald&family=Pacifico&family=Playpen+Sans:wght@300&family=Roboto:wght@300&family=Sedgwick+Ave+Display&display=swap"
+        rel="stylesheet">
+    <!-- icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="favicon_io/site.webmanifest">
+    <!-- boodstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!-- css -->
+    <link rel="stylesheet" href="index.css">
+    <script defer src="index.js"></script>
+
+    <title>MESSAGES API</title>
+</head>
+
+<body>
+    <header class="container-fluid strip text-center text-white">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#"><i class="fa fa-envelope-o display-6"
+                        aria-hidden="true"></i></a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item">
+                            <a class="nav-link a" href="#user">User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link a" href="#message">Message</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container d-flex justify-content-center align-items-center" style="height: 450px;">
+            <div class="mainHeader">
+                <h1 class="display-3">MESSAGE API</h1>
+                <p class="w-50 m-auto mt-5">Welcome to the MESSAGE API, with this API you can manage the users and their
+                    messages on your website, in this guide you will find explanations on how to use the API features
+                    and implement them.
+                    This API is built in node.js</p>
+                <h4 class="py-3 text-center mt-5">
+                    <span>Domain: </span>
+                    <span class="text fw-bold" id="domain">
+                        https://api-message.onrender.com</span>
+                    <button  class="btn btn-outline-dark mx-2" id="btnCopy">
+                        <i class="fa fa-clone" aria-hidden="true"></i>
+                    </button>
+                </h4>
+            </div>
+        </div>
+    </header>
+    <main class="container-fluid pb-4 mt-4">
+
+        <div class="container">
+            <h2 id="user" class="display-4 text-center pb-3">
+                <strong> User </strong>
+            </h2>
+        </div>
+
+        <div class="container  p-2">
+            <div class="text-center  px-5 mb-3">
+                You need to log in to the system to be able to send messages and view your messages, sending messages is
+                only possible to users registered in the system</div>
+
+            <div class="">
+                <table class="">
+
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col">Method</th>
+                            <th class="text-center" scope="col">URL</th>
+                            <th class="text-center" scope="col">Body</th>
+                            <th class="text-center" scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="rounded get">GET</div>
+                            </td>
+                            <td><a target="_blank" href="http://localhost:3001/user/">/user</a></td>
+                            <td></td>
+                            <td>Get all users - by admin token.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded get">GET</div>
+                            </td>
+                            <td><a target="_blank" href="http://localhost:3001/user/myInfo">/user/myInfo</a></td>
+                            <td></td>
+                            <td>Get your user information - by Token</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded post">POST</div>
+                            </td>
+                            <td>/user</td>
+                            <td>
+                                <pre class="text-start ps-5">
+{ 
+   name: {
+      firstName: Rivka,
+      lastName: Shabtay
+   },
+   "email": "rivki3232@gabay.com",
+   "password": "rivki3232"
+}
+ </pre>
+                            </td>
+                            <td>Add a new user</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded post">POST</div>
+                            </td>
+                            <td>/user/login</td>
+                            <td>
+                                <pre class="text-start ps-5">
+{
+    "email": "rivki3232@gabay.com",
+    "password": "rivki3232"
+} </pre>
+                            </td>
+                            <td>User login</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded put">PUT</div>
+                            </td>
+                            <td>/user/id</td>
+                            <td>
+                                <pre class="text-start ps-5">
+{ 
+    name: {
+       firstName: Rivka,
+       lastName: Shabtay
+    },
+    "email": "rivki3232@gabay.com",
+    "password": "rivki3232"
+}
+                             </pre>
+                            </td>
+                            <td>Update user, You can only update your user. And admin can update all users
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded delete">DELETE</div>
+                            </td>
+                            <td>/user/id</td>
+                            <td></td>
+                            <td>Delete a user - by admin token.</td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container">
+            <div id="toy" class="text-center m-3">
+                <h2 id="message" class="display-4 text-center pb-3">
+                    <strong>Message</strong>
+                </h2>
+            </div>
+        </div>
+
+        <div class="container  p-2">
+            <div class="text-center  px-5 mb-3">
+                You need to log in to the system to be able to send messages and view your messages, sending messages is
+                only possible to users registered in the system</div>
+
+            <div class="">
+                <table class="">
+
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col">Method</th>
+                            <th class="text-center" scope="col">URL</th>
+                            <th class="text-center" scope="col">Body</th>
+                            <th class="text-center" scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="rounded get">GET</div>
+                            </td>
+                            <td><a target="_blank" href="http://localhost:3001/message/sent">/message/sent</a></td>
+                            <td></td>
+                            <td>Get all messages sent - by Token.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded get">GET</div>
+                            </td>
+                            <td><a target="_blank" href="http://localhost:3001/message/inbox">/message/inbox</a></td>
+                            <td></td>
+                            <td>Get all received messages - by Token</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded get">GET</div>
+                            </td>
+                            <td><a target="_blank"
+                                    href="http://localhost:3001/message/sent/?perPage=5&page=2">/message/sent/?perPage=5&page=2</a>
+                                <br><br>
+                                <a target="_blank"
+                                    href="http://localhost:3001/message/inbox/?page=1&sort=title&reverse=yes">/message/inbox/?page=1&sort=title&reverse=yes</a>
+                            </td>
+                            <td></td>
+                            <td>You can send URL queries to display the data.
+                                <p class="m-0"><strong>perPage: </strong>amount of messages per page.</p>
+                                <p class="m-0"> <strong>page: </strong>page Number.</p>
+                                <p class="m-0"><strong>sort: </strong>sort by.</p>
+                                <p class="m-0"><strong>reverse: </strong>sort in reverse order.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded get">GET</div>
+                            </td>
+                            <td>/message/sent/single/{id}</td>
+                            <td></td>
+                            <td>Get a single message sent by id and token</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded get">GET</div>
+                            </td>
+                            <td>/message/inbox/{idFrom}</td>
+                            <td></td>
+                            <td>Get all messages from a specific user by user id and token</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded get">GET</div>
+                            </td>
+                            <td><a target="_blank"
+                                    href="http://localhost:3001/message/sent/search/?s=mes">/message/sent/search/?s=mes</a>
+                                <br><br>
+                                <a target="_blank"
+                                    href="http://localhost:3001/message/inbox/search/?s=mes">/message/inbox/search/?s=mes</a>
+                            </td>
+                            <td></td>
+                            <td>Search for a message by searching the title or body of the message after the "s=", it
+                                will show 10 results per page.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded post">POST</div>
+                            </td>
+                            <td>/message</td>
+                            <td>
+                                <pre class="text-start">
+{ 
+    "title":"messag1",
+    "body":"body message1",
+    "link":"https://images.965345/pexels.jpeg",
+    "to":["6569d62f6d0cd5de6ea9138c",
+          "6569c2b363edf7f38e07bf31"]
+}
+ </pre>
+                            </td>
+                            <td>Add a new message</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded put">PUT</div>
+                            </td>
+                            <td>/message/{id}</td>
+                            <td>
+                                <pre class="text-start ">
+{ 
+    "title":"messag1",
+    "body":"body message1",
+    "link":"https://images.pexels.jpeg",
+    "to":["6569d62f6d0cd5de6ea9138c",
+          "6569c2b363edf7f38e07bf31"]
+}
+                             </pre>
+                            </td>
+                            <td>Update message, You can only update your message.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="rounded delete">DELETE</div>
+                            </td>
+                            <td>/message/{id}</td>
+                            <td></td>
+                            <td>Delete a message - by token.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
+        <div class="col-md-4  align-items-center ms-4">
+            <p>© Rivka Shabtay - 2023</p>
+        </div>
+        <div class="col-md-1  align-items-center ">
+            <a href="https://github.com/rivkish" target="_blank"><i class="fa fa-github text-black display-6" aria-hidden="true"></i></a>
+        </div>
+    </footer>
+
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script> -->
+</body>
+
+</html>

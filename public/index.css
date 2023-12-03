@@ -1,0 +1,63 @@
+body{
+    background:  rgb(255, 248, 233);
+}
+
+.strip{
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%); 
+    min-height: 600px;
+}
+.container{
+    width: 70%;
+}
+.a{
+    color: white;
+    font-size: 1.2em;
+    }
+.a:hover{
+color:  rgba(34,193,195)
+}
+h4 {
+    font-family: sans-serif;
+    /* color: rgba(253,187,45,1); */
+    color: black;
+    font-size: 1.8em;
+
+}
+thead{
+    color: rgba(253,187,45,1);
+    background:rgba(34,193,195,1) ;
+    text-shadow: 2px 2px 2px #372722;
+
+}
+.mainHeader{
+    font-family: 'Oswald', sans-serif;
+}
+.mainHeader p{
+    font-size: 1.5em;
+}
+h2{
+    color:rgba(34,193,195,1) ;
+    
+}
+.get{
+    background: rgba(253,187,45,1) ;
+}
+.post{
+    background:  rgba(184,189,93) ;
+}
+.put{
+    background:  rgba(96,151,163);
+}
+.delete{
+    background:  rgba(34,193,195,1) ;
+} 
+td > div{
+
+color: white;
+text-align: center;
+}
+td,th{
+    padding: 16px ;
+    border:rgba(34,193,195,1) solid 2px;
+    text-align: center;
+}
