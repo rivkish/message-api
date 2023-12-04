@@ -86,7 +86,12 @@ const ReceivedMessagesSearch =async(req,res) => {
   try{
     let queryS = req.query.s;
     let searchReg = new RegExp(queryS,"i")
-    let data = await MessageModel.find({title:searchReg}).populate("from",{"email":1})
+    let data = await MessageModel.find({
+      $or: [
+        { title: searchReg },
+            { body: searchReg },     
+          ]
+    }).populate("from",{"email":1})
     .limit(50)
     let data2=data.filter(item=> {
       let b= item.to.includes(req.tokenData._id)
@@ -178,7 +183,8 @@ const updateMessage= async(req,res) => {
       }
     
   
-      res.json(data);
+      res.json(data.modifiedCount?"Update successfully":"You can't update");
+      // res.json(data);
     }
     catch(err){
       console.log(err)
@@ -195,7 +201,7 @@ const deleteMessage = async(req,res) => {
       else{
         data = await MessageModel.deleteOne({_id:delId,from:req.tokenData._id})
       }
-      res.json(data);
+      res.json(data.deletedCount?"Deleted successfully":"You can't delete");
     }
     catch(err){
       console.log(err)
