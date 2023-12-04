@@ -4,8 +4,8 @@ const {auth,authAdmin} = require("../middlewares/auth.js")
 const messageController = require("../controllers/message.js");
 
 
-router.get("/" , messageController.getAllMessages)
-// router.get("/" ,authAdmin, messageController.getAllMessages)
+// router.get("/" , messageController.getAllMessages)
+router.get("/" ,authAdmin, messageController.getAllMessages)
 router.get("/sent" ,auth, messageController.getSentMessageByToken)
 router.get("/sent/single/:id" ,auth, messageController.getSingelSentMessageByToken)
 router.get("/inbox" ,auth, messageController.getReceivedMessagesByToken)

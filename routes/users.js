@@ -5,8 +5,8 @@ const userController = require("../controllers/user");
 
 const router = express.Router();
 
-// router.get("/",authAdmin, userController.getAllUsers)
-router.get("/", userController.getAllUsers)
+router.get("/",authAdmin, userController.getAllUsers)
+// router.get("/", userController.getAllUsers)
 router.post("/", userController.addUser)
 router.get("/myEmail", auth, userController.getEmailByToken)
 router.get("/myInfo",auth, userController.getInfoByToken)
