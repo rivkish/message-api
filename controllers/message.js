@@ -182,8 +182,8 @@ const updateMessage= async(req,res) => {
          data = await MessageModel.updateOne({_id:editId,from:req.tokenData._id},req.body)
       }
     
-  
       res.json(data.modifiedCount?"Update successfully":"You can't update");
+  
       // res.json(data);
     }
     catch(err){
@@ -201,7 +201,9 @@ const deleteMessage = async(req,res) => {
       else{
         data = await MessageModel.deleteOne({_id:delId,from:req.tokenData._id})
       }
+    
       res.json(data.deletedCount?"Deleted successfully":"You can't delete");
+
     }
     catch(err){
       console.log(err)
