@@ -82,6 +82,24 @@ const getReceivedMessagesByToken = async(req,res)=> {
       res.status(500).json({msg:"err",err})
     }                      
 }
+const ReceivedMessagesSearch =async(req,res) => {
+  try{
+    let queryS = req.query.s;
+    let searchReg = new RegExp(queryS,"i")
+    let data = await MessageModel.find({title:searchReg}).populate("from",{"email":1})
+    .limit(50)
+    let data2=data.filter(item=> {
+      let b= item.to.includes(req.tokenData._id)
+      item.to=[]
+      return b
+     })   
+     res.json(data2);
+  }
+  catch(err){
+    console.log(err);
+    res.status(500).json({msg:"there error try again later",err})
+  }
+}
 const getMessagesFromByToken = async(req,res)=> {
   let perPage = Math.min(req.query.perPage,20) || 10;
   let page = req.query.page || 1;
@@ -126,25 +144,7 @@ const SentMessageSearch =async(req,res) => {
       res.status(500).json({msg:"there error try again later",err})
     }
 }
-const ReceivedMessagesSearch =async(req,res) => {
-    try{
-      let queryS = req.query.s;
-      let searchReg = new RegExp(queryS,"i")
-      let data = await MessageModel.find({title:searchReg}).populate("from",{"email":1})
-      .limit(50)
 
-      let data2=data.filter(item=> {
-        let b= item.to.includes(req.tokenData._id)
-        item.to=[]
-        return b
-       })   
-       res.json(data2);
-    }
-    catch(err){
-      console.log(err);
-      res.status(500).json({msg:"there error try again later",err})
-    }
-}
                                    
 const addMessage= async(req,res) => {
     let valdiateBody =  validateMessage(req.body);
